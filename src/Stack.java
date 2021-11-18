@@ -1,13 +1,14 @@
 
 public class Stack {
 
-
-	public static char pop() {
+	private char[] stackArray;
+	int stkPtr = 0;
+	public char pop() {
 		
 		return (Character) null;
 	}
 	
-	public static void push(char c) {
+	public void push(char c) {
 		
 	}
 }
