@@ -50,27 +50,4 @@ public class StringTester {
 		return userInput;
 	}
 
-	public static String getUserInput() {
-		return userInput;
-	}
-
-	public static void setUserInput(String userInput) {
-		StringTester.userInput = userInput;
-	}
-
-	public static char getUserInputChar() {
-		return userInputChar;
-	}
-
-	public static void setUserInputChar(char userInputChar) {
-		StringTester.userInputChar = userInputChar;
-	}
-
-	public static char[] getStackArray() {
-		return stackArray;
-	}
-
-	public static void setStackArray(char[] stackArray) {
-		StringTester.stackArray = stackArray;
-	}
 }
