@@ -14,8 +14,8 @@ public class StringTester {
 		Stack teStack = new Stack();
 		teStack.push('a');
 		teStack.push('b');
-		teStack.peek();
-		
+		teStack.pop();
+			
 		for (int i = 0; i < userInput.length(); i++) {
 			userInputChar = userInput.charAt(i);
 		}
