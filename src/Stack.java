@@ -13,7 +13,7 @@ public class Stack {
 		return bracketData;
 	}
 
-	public void push(char c) {		
+	public void push(char c) {
 		stackArray[stkPtr] = c;
 		stkPtr++;
 	}

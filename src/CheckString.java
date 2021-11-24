@@ -10,13 +10,13 @@ public class CheckString {
 		if (toCheckInput == '(' || toCheckInput == '[' || toCheckInput == '{') {
 			pushStack.push(toCheckInput);
 		}
-		
+
 		if (check[0] == 0 && toCheckInput == ')' || check[0] == 0 && toCheckInput == ']'
 				|| check[0] == 0 && toCheckInput == '}') {
 			rightOrWrong = false;
 			return rightOrWrong;
 		}
-	
+
 		if (toCheckInput == ')' || toCheckInput == ']' || toCheckInput == '}') {
 			pushStack.pop();
 
@@ -30,11 +30,6 @@ public class CheckString {
 			return rightOrWrong;
 		}
 		return (Boolean) null;
-	}
-
-
-	public void setRightOrWrong(boolean rightOrWrong) {
-		this.rightOrWrong = rightOrWrong;
 	}
 
 	public boolean getIsRightOrWrong() {
