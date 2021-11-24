@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 public class Stack {
 
-	char stackArray[] = new char[5];
+	char stackArray[] = new char[100];
 	private int stkPtr = 0;
 
 	public char pop() {
@@ -18,8 +18,7 @@ public class Stack {
 		stkPtr++;
 	}
 
-
-	public int getStkPtr() {
-		return this.stkPtr;
+	public char[] getStackArray() {
+		return stackArray;
 	}
 }
