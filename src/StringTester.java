@@ -29,7 +29,6 @@ public class StringTester {
 
 		for (int i = 0; i < userInput.length(); i++) {
 			char userInputChar = userInput.charAt(i);
-			boolean checkEmpty = pushStack.isEmpty();
 
 			if (userInputChar == '(') {
 				pushStack.push(userInputChar);
@@ -42,47 +41,37 @@ public class StringTester {
 			}
 
 			if (userInputChar == ')') {
-				checkEmpty = pushStack.isEmpty();
+				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
 					return "Es ist Falsch";
+				} else {
+					pushStack.pop();
 				}
-				char a = pushStack.pop();
-				if (a == '[' || a == '{') {
-					return "Es ist Falsch";
-				}
+
 			}
 			if (userInputChar == ']') {
-				checkEmpty = pushStack.isEmpty();
+				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
 					return "Es ist Falsch";
-				}
-				char b = pushStack.pop();
-				checkEmpty = pushStack.isEmpty();
-				if (b == '(' || b == '{') {
-					return "Es ist Falsch";
+				} else {
+					pushStack.pop();
 				}
 			}
 			if (userInputChar == '}') {
-				checkEmpty = pushStack.isEmpty();
+				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
 					return "Es ist Falsch";
-				}
-				char b = pushStack.pop();
-				checkEmpty = pushStack.isEmpty();
-				if (b == '(' || b == '[') {
-					return "Es ist Falsch";
+				} else {
+					pushStack.pop();
 				}
 			}
-			checkEmpty = pushStack.isEmpty();
-			if (checkEmpty == false && userInputChar == ')' || checkEmpty == false && userInputChar == '}'
-					|| checkEmpty == false && userInputChar == ']') {
 
-			}
 		}
-		boolean finalInput = pushStack.isEmpty();
-		if (finalInput == false) {
+		boolean checkEmpty = pushStack.isEmpty();
+		if(checkEmpty == false) {
 			return "Es ist Falsch";
-		} else if (finalInput == true) {
+		}
+		if(checkEmpty == true) {
 			return "Es ist Richtig";
 		}
 
