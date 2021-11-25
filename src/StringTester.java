@@ -51,6 +51,7 @@ public class StringTester {
 			continueFormalCheck = true;
 		}else {
 			continueFormalCheck = false;
+			System.out.println(continueFormalCheck);
 		}
 		
 	}

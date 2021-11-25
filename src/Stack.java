@@ -21,4 +21,8 @@ public class Stack {
 	public char[] getStackArray() {
 		return stackArray;
 	}
+	
+	public int getStkPtr() {
+		return stkPtr;
+	}
 }

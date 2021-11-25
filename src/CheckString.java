@@ -4,9 +4,9 @@ public class CheckString {
 	boolean rightOrWrong;
 	Stack pushStack = new Stack();
 	char[] check = pushStack.getStackArray();
-
+	int stkPt = pushStack.getStkPtr();
+	
 	public boolean checkIfInputIsCorrect(char toCheckInput) {
-
 		if (toCheckInput == '(' || toCheckInput == '[' || toCheckInput == '{') {
 			pushStack.push(toCheckInput);
 		}
@@ -19,11 +19,10 @@ public class CheckString {
 
 		if (toCheckInput == ')' || toCheckInput == ']' || toCheckInput == '}') {
 			pushStack.pop();
-
-			if (check[0] == 0) {
-				rightOrWrong = true;
-				return rightOrWrong;
-			}
+		}
+		if (check[0] == 0) {
+			rightOrWrong = true;
+			return rightOrWrong;
 		}
 		if (check[0] != 0) {
 			rightOrWrong = false;
