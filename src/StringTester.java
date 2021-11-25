@@ -11,12 +11,12 @@ public class StringTester {
 		Stack pushStack = new Stack();
 		boolean continueTest;
 		do {
-		System.out.println("Bitte geben sie hier ihre Formel ein:");
-		String inputUserString = inputUserString();
-		String outputString = splittArraysIntoCharrs(inputUserString, pushStack);
-		System.out.println(outputString);
-		continueTest = checkIfUserWantsToContinue();
-		}while(continueTest == true);
+			System.out.println("Bitte geben sie hier ihre Formel ein:");
+			String inputUserString = inputUserString();
+			String outputString = splittArraysIntoCharrs(inputUserString, pushStack);
+			System.out.println(outputString);
+			continueTest = checkIfUserWantsToContinue();
+		} while (continueTest == true);
 	}
 
 	public static String inputUserString() {
@@ -29,6 +29,8 @@ public class StringTester {
 
 		for (int i = 0; i < userInput.length(); i++) {
 			char userInputChar = userInput.charAt(i);
+			boolean checkEmpty = pushStack.isEmpty();
+
 			if (userInputChar == '(') {
 				pushStack.push(userInputChar);
 			}
@@ -38,60 +40,70 @@ public class StringTester {
 			if (userInputChar == '[') {
 				pushStack.push(userInputChar);
 			}
-			boolean firstInput = pushStack.isEmpty();
-			if (firstInput == true && userInputChar == ')' || firstInput == true && userInputChar == ']'
-					|| firstInput == true && userInputChar == '}') {
-				return "Es ist Falsch";
-			}
 
 			if (userInputChar == ')') {
+				checkEmpty = pushStack.isEmpty();
+				if (checkEmpty == true) {
+					return "Es ist Falsch";
+				}
 				char a = pushStack.pop();
-				boolean checkEmpty = pushStack.isEmpty();
+				checkEmpty = pushStack.isEmpty();
+
+				if (checkEmpty == true) {
+					return "Es ist Richtig";
+				}
 				if (a == '[' || a == '{') {
 					return "Es ist Falsch";
-				} else if (checkEmpty == true) {
-					return "Es ist Richtig";
 				}
 			}
 			if (userInputChar == ']') {
-				char a = pushStack.pop();
-				boolean checkEmpty = pushStack.isEmpty();
-				if (a == '(' || a == '{') {
-					return "Es ist Falsch";
-				} else if (checkEmpty == true) {
-					return "Es ist Richtig";
-				}
-			}
-			if (userInputChar == '}') {
-				char a = pushStack.pop();
-				boolean checkEmpty = pushStack.isEmpty();
-				if (a == '(' || a == '[') {
+				checkEmpty = pushStack.isEmpty();
+				if (checkEmpty == true) {
 					return "Es ist Falsch";
 				}
+				char b = pushStack.pop();
+				checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
 					return "Es ist Richtig";
+				}
+				if (b == '(' || b == '{') {
+					return "Es ist Falsch";
+				}
+			}
+
+			if (userInputChar == '}') {
+				checkEmpty = pushStack.isEmpty();
+				if (checkEmpty == true) {
+					return "Es ist Falsch";
+				}
+				char b = pushStack.pop();
+				checkEmpty = pushStack.isEmpty();
+				if (checkEmpty == true) {
+					return "Es ist Richtig";
+				}
+				if (b == '(' || b == '[') {
+					return "Es ist Falsch";
 				}
 			}
 		}
 		boolean finalInput = pushStack.isEmpty();
 		if (finalInput == false) {
 			return "Es ist Falsch";
-		}else if(finalInput == true) {
-			return "Bitte geben sie eine Formel ein";
-			}
+		} else if (finalInput == true) {
+			return "Es ist Richtig";
+		}
+
 		return "";
 	}
 
 	public static boolean checkIfUserWantsToContinue() {
-		System.out.println("Drüchen sie Ja/ja um weiter zu machen oder irgendeine Taste um zu beenden");
+		System.out.println("Drücken sie Ja/ja um weiter zu machen oder irgendeine Taste um zu beenden");
 		String input = inputUserString();
 		boolean continueFormalCheck;
 		if (input.equals("ja") || input.equals("Ja")) {
 			return continueFormalCheck = true;
 		} else {
 			return continueFormalCheck = false;
-			
 		}
-
 	}
 }
