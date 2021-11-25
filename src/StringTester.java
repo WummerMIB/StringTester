@@ -6,26 +6,17 @@ import java.util.Scanner;
 import java.util.jar.Attributes.Name;
 
 public class StringTester {
-	private static boolean continueFormalCheck;
-	
+
 	public static void main(String[] args) {
-		continueFormalCheck = true;
-		while (continueFormalCheck == true) {
-			System.out.println("Bitte geben sie ihre zu Überprüfende Formel ein:");
-			String userInput = inputUserString();
-			CheckString checked = new CheckString();
-			char userInputChar = 0;
-			splittArraysIntoCharrs(userInputChar, userInput, checked);
-			if (checked.getIsRightOrWrong() == true) {
-				System.out.println("Sie haben die Klammern richtig gesetzt");
-				checkIfUserWantsToContinue(continueFormalCheck);
-			}
-			if (checked.getIsRightOrWrong() == false) {
-				System.out.println("Sie haben die Klammern falsch gesetzt");
-				checkIfUserWantsToContinue(continueFormalCheck);
-			}
-			System.out.println(continueFormalCheck);
-		}
+		Stack pushStack = new Stack();
+		boolean continueTest;
+		do {
+		System.out.println("Bitte geben sie hier ihre Formel ein:");
+		String inputUserString = inputUserString();
+		String outputString = splittArraysIntoCharrs(inputUserString, pushStack);
+		System.out.println(outputString);
+		continueTest = checkIfUserWantsToContinue();
+		}while(continueTest == true);
 	}
 
 	public static String inputUserString() {
@@ -34,25 +25,73 @@ public class StringTester {
 		return userInput;
 	}
 
-	public static void splittArraysIntoCharrs(char userInputChar, String userInput, CheckString checked) {
+	public static String splittArraysIntoCharrs(String userInput, Stack pushStack) {
+
 		for (int i = 0; i < userInput.length(); i++) {
-			userInputChar = userInput.charAt(i);
-			if (userInputChar == '(' || userInputChar == ')' || userInputChar == '[' || userInputChar == ']'
-					|| userInputChar == '{' || userInputChar == '}') {
-				checked.checkIfInputIsCorrect(userInputChar);
+			char userInputChar = userInput.charAt(i);
+			if (userInputChar == '(') {
+				pushStack.push(userInputChar);
+			}
+			if (userInputChar == '{') {
+				pushStack.push(userInputChar);
+			}
+			if (userInputChar == '[') {
+				pushStack.push(userInputChar);
+			}
+			boolean firstInput = pushStack.isEmpty();
+			if (firstInput == true && userInputChar == ')' || firstInput == true && userInputChar == ']'
+					|| firstInput == true && userInputChar == '}') {
+				return "Es ist Falsch";
+			}
+
+			if (userInputChar == ')') {
+				char a = pushStack.pop();
+				boolean checkEmpty = pushStack.isEmpty();
+				if (a == '[' || a == '{') {
+					return "Es ist Falsch";
+				} else if (checkEmpty == true) {
+					return "Es ist Richtig";
+				}
+			}
+			if (userInputChar == ']') {
+				char a = pushStack.pop();
+				boolean checkEmpty = pushStack.isEmpty();
+				if (a == '(' || a == '{') {
+					return "Es ist Falsch";
+				} else if (checkEmpty == true) {
+					return "Es ist Richtig";
+				}
+			}
+			if (userInputChar == '}') {
+				char a = pushStack.pop();
+				boolean checkEmpty = pushStack.isEmpty();
+				if (a == '(' || a == '[') {
+					return "Es ist Falsch";
+				}
+				if (checkEmpty == true) {
+					return "Es ist Richtig";
+				}
 			}
 		}
+		boolean finalInput = pushStack.isEmpty();
+		if (finalInput == false) {
+			return "Es ist Falsch";
+		}else if(finalInput == true) {
+			return "Bitte geben sie eine Formel ein";
+			}
+		return "";
 	}
 
-	public static void checkIfUserWantsToContinue(boolean continueFormalCheck) {
+	public static boolean checkIfUserWantsToContinue() {
 		System.out.println("Drüchen sie Ja/ja um weiter zu machen oder irgendeine Taste um zu beenden");
 		String input = inputUserString();
+		boolean continueFormalCheck;
 		if (input.equals("ja") || input.equals("Ja")) {
-			continueFormalCheck = true;
-		}else {
-			continueFormalCheck = false;
-			System.out.println(continueFormalCheck);
+			return continueFormalCheck = true;
+		} else {
+			return continueFormalCheck = false;
+			
 		}
-		
+
 	}
 }
