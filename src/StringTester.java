@@ -8,12 +8,11 @@ import java.util.jar.Attributes.Name;
 public class StringTester {
 
 	public static void main(String[] args) {
-		Stack pushStack = new Stack();
 		boolean continueTest;
 		do {
 			System.out.println("Bitte geben sie hier ihre Formel ein:");
 			String inputUserString = inputUserString();
-			String outputString = splittArraysIntoCharrs(inputUserString, pushStack);
+			String outputString = splittArraysIntoCharrs(inputUserString);
 			System.out.println(outputString);
 			continueTest = checkIfUserWantsToContinue();
 		} while (continueTest == true);
@@ -25,8 +24,8 @@ public class StringTester {
 		return userInput;
 	}
 
-	public static String splittArraysIntoCharrs(String userInput, Stack pushStack) {
-
+	public static String splittArraysIntoCharrs(String userInput) {
+		Stack pushStack = new Stack();
 		for (int i = 0; i < userInput.length(); i++) {
 			char userInputChar = userInput.charAt(i);
 
@@ -43,36 +42,45 @@ public class StringTester {
 			if (userInputChar == ')') {
 				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
-					return "Es ist Falsch";
+					return "Klammern ungültig";
 				} else {
-					pushStack.pop();
+					char popValue = pushStack.pop();
+					if(popValue != '(') {
+						return "Klammern ungültig";
+					}
 				}
 
 			}
 			if (userInputChar == ']') {
 				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
-					return "Es ist Falsch";
+					return "Klammern ungültig";
 				} else {
-					pushStack.pop();
+					char popValue = pushStack.pop();
+					if(popValue != '[') {
+						return "Klammern ungültig";
+					}
 				}
 			}
 			if (userInputChar == '}') {
 				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
-					return "Es ist Falsch";
+					return "Klammern ungültig";
 				} else {
-					pushStack.pop();
+					char popValue = pushStack.pop();
+					if(popValue != '{') {
+						return "Klammern ungültig";
+					}
 				}
 			}
 
 		}
 		boolean checkEmpty = pushStack.isEmpty();
 		if(checkEmpty == false) {
-			return "Es ist Falsch";
+			return "Klammern ungültig";
 		}
 		if(checkEmpty == true) {
-			return "Es ist Richtig";
+			return "Klammern gültig";
 		}
 
 		return "";

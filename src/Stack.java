@@ -6,10 +6,11 @@ public class Stack {
 	private int stkPtr = 0;
 
 	public char pop() {
+		System.out.println(stkPtr);
 		stkPtr--;
+		System.out.println(stkPtr);
 		char bracketData = stackArray[stkPtr];
-		bracketData = 0;
-		stackArray[stkPtr] = bracketData;
+		stackArray[stkPtr] = 0;
 		return bracketData;
 	}
 
