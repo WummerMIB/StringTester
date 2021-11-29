@@ -6,9 +6,7 @@ public class Stack {
 	private int stkPtr = 0;
 
 	public char pop() {
-		System.out.println(stkPtr);
 		stkPtr--;
-		System.out.println(stkPtr);
 		char bracketData = stackArray[stkPtr];
 		stackArray[stkPtr] = 0;
 		return bracketData;
@@ -18,7 +16,7 @@ public class Stack {
 		stackArray[stkPtr] = c;
 		stkPtr++;
 	}
-	
+
 	public boolean isEmpty() {
 		if (stackArray[0] == 0) {
 			return true;
