@@ -44,20 +44,19 @@ public class StringTester {
 				if (checkEmpty == true) {
 					return "Klammern ungültig";
 				} else {
-					char popValue = pushStack.pop();
-					if(popValue != '(') {
+					char test = pushStack.pop();
+					if (test != '(') {
 						return "Klammern ungültig";
 					}
 				}
-
 			}
 			if (userInputChar == ']') {
 				boolean checkEmpty = pushStack.isEmpty();
 				if (checkEmpty == true) {
 					return "Klammern ungültig";
 				} else {
-					char popValue = pushStack.pop();
-					if(popValue != '[') {
+					char test = pushStack.pop();
+					if (test != '[') {
 						return "Klammern ungültig";
 					}
 				}
@@ -67,19 +66,18 @@ public class StringTester {
 				if (checkEmpty == true) {
 					return "Klammern ungültig";
 				} else {
-					char popValue = pushStack.pop();
-					if(popValue != '{') {
+					char test = pushStack.pop();
+					if (test != '{') {
 						return "Klammern ungültig";
 					}
 				}
 			}
-
 		}
 		boolean checkEmpty = pushStack.isEmpty();
-		if(checkEmpty == false) {
+		if (checkEmpty == false) {
 			return "Klammern ungültig";
 		}
-		if(checkEmpty == true) {
+		if (checkEmpty == true) {
 			return "Klammern gültig";
 		}
 
