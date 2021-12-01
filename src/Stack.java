@@ -1,3 +1,4 @@
+// 2120717 Marco Mohr, 2123474 Marie Kapusta
 import java.util.Iterator;
 
 public class Stack {
@@ -19,7 +20,6 @@ public class Stack {
 		// return char that was in Stack that was pointed at
 		return bracketData;
 	}
-
 	// push Method for the Stack that adds an Element at the Top
 	public void push(char c) {
 		// Writes the passed char variable to the currently shown array element
